@@ -1,0 +1,21 @@
+[debian]
+sala ansible_host=192.168.1.102
+#[artix]
+# toshiba ansible_host=192.168.1.103
+
+[master]
+canaima ansible_host=127.0.0.1
+
+#[master:vars]
+#ansible_connection=local
+#ansible_become_pass="{{ masterpass }}"
+
+#[debian:vars]
+#ansible_ssh_user=raxs
+#ansible_ssh_pass="{{ debpass }}"
+#ansible_become_pass="{{ debpass }}"
+
+#[artix:vars]
+#ansible_ssh_user=reithe
+#ansible_ssh_pass="{{ lookup('env', 'MARTIX') | b64decode }}"
+#ansible_become_pass="{{ lookup('env', 'MARTIX') | b64decode }}"

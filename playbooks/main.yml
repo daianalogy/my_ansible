@@ -1,0 +1,91 @@
+---
+#- hosts: all
+  #become: yes
+  #tasks: #añadiendo secrets
+    #- name: Include secrets
+      #include_vars:
+        #file: ~/.ansible/group_vars/master.yml
+        #name: secrets
+- hosts: debian
+  become: yes
+  tasks: #APT
+    - name: instalación de paquetes esenciales
+      apt: 
+        pkg: 
+          - qmplay2
+          - hypnotix
+          - gdu
+          - paprefs
+          - openssh-client
+          - openssh-server
+          - links2
+          - thorium-browser
+          - conky-manager
+          - uget
+          - webapp-manager
+          - flameshot
+          - micro
+        state: present
+        update_cache: no
+    - name: eliminar paquetes NO esenciales o redundantes
+      apt:
+        pkg: 
+          - bpytop
+        state: absent
+        update_cache: no        
+- hosts: master
+  connection: local
+  become: yes
+  tasks:  #Pacman 
+    - name: instalacion de paquetes Pacman esenciales
+      pacman:
+        pkg:
+          - btop
+          - openssh
+          - ytfzf
+          - uget
+          - rofi
+          - rofi-calc
+          - rofi-emoji
+          - clipmenu
+          - mplayer
+          - qmplay2
+          - galculator
+          - xarchiver
+          - geany
+          - flameshot
+          - gdu
+          - gimp
+          - inkscape
+          - paprefs
+          - anytype-bin
+          - geoip
+          - conky-manager
+          - elinks
+          - gparted
+          - dnslookup-bin
+          - micro
+        state: present
+        update_cache: no
+    - name: eliminar paquetes Pacman NO esenciales o redundantes
+      pacman:
+        pkg:
+          - nvidia-utils
+          - mattermost-desktop
+          - steam
+          - bpytop
+        state: absent
+        update_cache: no
+   # AUR     
+#    - name: instalación paquetes AUR esenciales
+#      yay: 
+#        name: hypnotix,normcap,stremio-beta,thorium-browser-sse3-bin,slack-desktop 
+#        state: present
+#        update_cache: no 
+#    - name: eliminar paquetes AUR no esenciales o redundantes
+#      yay:
+#        name: brave-bin
+#        state: absent
+#        recurse: yes
+#        update_cache: no
+        

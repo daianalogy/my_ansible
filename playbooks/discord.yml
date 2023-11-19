@@ -1,0 +1,10 @@
+- hosts: master
+  connection: local
+  become: yes
+  tasks:  #Pacman 
+    - name: comprobar actualización discord
+      pacman:
+        pkg:
+          - discord
+        state: latest
+        update_cache: yes
