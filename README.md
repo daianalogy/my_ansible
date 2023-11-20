@@ -13,10 +13,10 @@ These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create lo
 
 There are two environment variables inside the script:  
   
-  EnvVars | Values
-  ---|---|---|
-**PLAYBOOK_PATH=** | `path/to/your/playbook `
-  **ANSIBLE_CONFIG=**| ``path/to/your/ansible/config/file/``
+EnvVars | Values
+---|---|---|
+**PLAYBOOK_PATH=** | `path/to/your/playbook`
+**ANSIBLE_CONFIG=**| `path/to/your/ansible/config/file/`
  
   
  
