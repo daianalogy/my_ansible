@@ -7,9 +7,9 @@ These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create lo
 
 
 + **summary.log** = a *brief* summary 
-+ ![qownnotes-media-nMxhmy](media/qownnotes-media-nMxhmy.png)
++ ![qownnotes-media-nMxhmy](https://i.imgur.com/Bk4iEsv.png)
 + **main.log** = a very verbose .log *for troubleshooting playbooks*
-+ ![qownnotes-media-fRwQra](media/qownnotes-media-fRwQra.png)
++ ![qownnotes-media-fRwQra](https://i.imgur.com/wnFxMBV.png)
 
 There are two environment variables inside the script:  
   
