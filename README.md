@@ -12,7 +12,7 @@ These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create lo
   
  ![main.log](https://i.imgur.com/wnFxMBV.png)
 
-There are two environment variables inside the script *autorun.sh* thatmust be provided in order to properly works:  
+There are two environment variables inside the script *autorun.sh* that must be provided in order to properly works:  
   
 | EnvVars | Values |
 |---|---|
