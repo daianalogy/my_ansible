@@ -60,6 +60,7 @@
           - gparted
           - dnslookup-bin
           - micro
+          - github-cli
         state: present
         update_cache: no
     - name: eliminar paquetes Pacman NO esenciales o redundantes
