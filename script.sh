@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ruta relativa  al playbook
 
-PLAYBOOK_PATH=~/.ansible/playbooks/checkds.yml
+PLAYBOOK_PATH=~/.ansible/playbooks/discord.yml
 
 # Directorio de trabajo del playbook
 
@@ -13,9 +13,10 @@ export ANSIBLE_CONFIG=ansible.cfg
 
 # ejecución
 
-ansible-playbook -v $PLAYBOOK_PATH >> ~/.ansible/logs/master.log 2>&1 ; 
-grep -oE 'ok=[0-9] + changed=[0-9] + unreachable=[0-9] + failed=[0-9] + skipped=[0-9] + rescued=[0-9] + ignored=[0-9]+ ' 
-~/.ansible/logs/master.log >> ~/.ansible/logs/summary.log
+ansible-playbook -v $PLAYBOOK_PATH > ~/.ansible/tmp/tmp.log 2>&1 ;
+cat ~./ansible/tmp/tmp.log >> ~.ansible/logs/main.log 
+grep -oE '(skipped|ok|changed|failed|unreachable|rescued|ignored)=[1-9][0-9]*/b' ~/.ansible/tmp/tmp.log >> ~/.ansible/logs/summary.log
+#grep -oE 'ok=[0-9] + changed=[0-9] + unreachable=[0-9] + failed=[0-9] + skipped=[0-9] + rescued=[0-9] + ignored=[0-9]+ ' ~/.ansible/tmp/tmp.log >> ~/.ansible/logs/summary.log
 
 #'\(skipped\|ok\|changed\|failed\)=[1-9][0-9]*'
 
