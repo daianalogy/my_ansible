@@ -4,8 +4,8 @@ These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create lo
 
 + **tmp.log**= it's a *temporal* log file stored at **`tmp/tmp.log`**
 
-+ **summary.log** = a *brief* summary 
- ![summary.log](https://i.imgur.com/Bk4iEsv.png)
++ **summary.log** = a *brief* summary
+![summary.log](https://i.imgur.com/Bk4iEsv.png)
 + **main.log** = a very verbose .log *for troubleshooting playbooks*
  ![main.log](https://i.imgur.com/wnFxMBV.png)
 
