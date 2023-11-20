@@ -1,12 +1,6 @@
 ---
-#- hosts: all
-  #become: yes
-  #tasks: #añadiendo secrets
-    #- name: Include secrets
-      #include_vars:
-        #file: ~/.ansible/group_vars/master.yml
-        #name: secrets
 - hosts: debian
+  gather_facts: False
   become: yes
   tasks: #APT
     - name: instalación de paquetes esenciales
@@ -34,6 +28,7 @@
         state: absent
         update_cache: no        
 - hosts: master
+  gather_facts: False
   connection: local
   become: yes
   tasks:  #Pacman 
