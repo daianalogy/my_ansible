@@ -1,6 +1,8 @@
 # Logs for (my) Ansible Playbooks
 
-These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create logs files.
+These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create logs files in `logs/`
+
+**must create** the logs dir and *summary.log* & *main.log* files inside your ansible working dir, should look like this: *`.ansible/logs/here-goes-the-files`*
 
 + **tmp.log**= it's a *temporal* log file stored at **`tmp/tmp.log`**
 + **summary.log** = a *brief* summary of playbooks' execution
