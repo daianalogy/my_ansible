@@ -1,4 +1,4 @@
-# My Ansible Playbooks
+# Logs for (my) Ansible Playbooks
 
 These *playbooks* can run as a scheduled cronjob with *autorun.sh* and create logs files.
 
