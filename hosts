@@ -1,7 +1,7 @@
 [debian]
 sala ansible_host=192.168.1.102
-#[artix]
-# toshiba ansible_host=192.168.1.103
+[arch]
+toshiba ansible_host=192.168.1.101
 
 [master]
 canaima ansible_host=127.0.0.1

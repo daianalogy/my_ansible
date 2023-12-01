@@ -8,7 +8,11 @@
         pkg: 
           - qmplay2
           - hypnotix
+          - cmus
           - gdu
+          - cmatrix
+          - ranger
+          - lollypop
           - paprefs
           - openssh-client
           - openssh-server
@@ -19,6 +23,7 @@
           - webapp-manager
           - flameshot
           - micro
+          - nala
         state: present
         update_cache: no
     - name: eliminar paquetes NO esenciales o redundantes
@@ -31,13 +36,69 @@
   gather_facts: False
   connection: local
   become: yes
-  tasks:  #Pacman 
-    - name: instalacion de paquetes Pacman esenciales
+  tasks:  #DNF 
+    - name: instalacion de paquetes DNF/RPM esenciales
+      ansible.builtin.dnf5:
+        pkg:
+          - btop
+          - uget
+          - rofi
+          - cmus
+          - cmatrix
+          - rofimoji
+          - xarchiver
+          - midori
+          - ranger
+          - lollypop
+          - qownnotes
+          - geany
+          - flameshot
+          - geoip
+          - elinks
+          - gparted
+          - micro
+          - git
+          - golang
+          - inkscape
+        state: present
+        update_cache: no
+    - name: eliminar paquetes DNF NO esenciales o redundantes
+      ansible.builtin.dnf5:
+        pkg:
+          - nvidia-utils
+          - paprefs
+          - steam
+          - bpytop
+        state: absent
+        update_cache: no
+    - name: actualización de paquetes DNF/RPM 
+      ansible.builtin.dnf5:
+        pkg:
+          - discord
+        state: latest
+        update_cache: yes
+    - name: Descargar el archivo RPM
+      ansible.builtin.get_url:
+        url: https://github.com/balena-io/etcher/releases/download/v1.18.13/balena-etcher-1.18.13.x86_64.rpm
+        dest: /home/reithe/rpm/etcher.rpm
+
+    - name: Instalación de RPMs
+      ansible.builtin.dnf:
+        name: /home/reithe/rpm/etcher.rpm
+        state: present
+        disable_gpg_check: yes
+- hosts: arch
+  gather_facts: False
+  become: yes
+  tasks: #Pacman
+    - name: instalación de paquetes esenciales
       pacman:
         pkg:
           - btop
           - openssh
           - ytfzf
+          - cmus
+          - cmatrix
           - uget
           - rofi
           - rofi-calc
@@ -51,37 +112,60 @@
           - flameshot
           - gdu
           - gimp
+          - ranger
+          - lollypop
           - inkscape
-          - paprefs
-          - anytype-bin
+          #- paprefs
+          - ansible
           - geoip
+          - ristretto
+          - atril
           - conky-manager
           - elinks
           - gparted
-          - dnslookup-bin
           - micro
           - github-cli
+          - obsidian
         state: present
         update_cache: no
     - name: eliminar paquetes Pacman NO esenciales o redundantes
       pacman:
         pkg:
+          - nvidia
           - nvidia-utils
           - mattermost-desktop
           - steam
           - bpytop
         state: absent
         update_cache: no
-   # AUR     
-#    - name: instalación paquetes AUR esenciales
-#      yay: 
-#        name: hypnotix,normcap,stremio-beta,thorium-browser-sse3-bin,slack-desktop 
-#        state: present
-#        update_cache: no 
-#    - name: eliminar paquetes AUR no esenciales o redundantes
-#      yay:
-#        name: brave-bin
-#        state: absent
-#        recurse: yes
-#        update_cache: no
-        
+    - name: actualizar discord
+      pacman:
+        pkg:
+          - discord
+        state: latest
+        update_cache: yes
+        ### AUR
+    - name: instalación paquetes AUR esenciales
+      yay: 
+        name: dnslookup-bin,hypnotix,normcap,stremio-beta,thorium-browser-sse3-bin,slack-desktop,anytype-bin
+        state: present
+        update_cache: no
+    - name: eliminar paquetes AUR no esenciales o redundantes
+      yay:
+        name: brave-bin
+        state: absent
+        recurse: yes
+        update_cache: no
+
+    #- name: Instalación de RPMs
+     # ansible.builtin.dnf:
+      #  name: "{{ item }}"
+       # state: present
+        #loop: "{{ lookup('fileglob', '~/rpm/*.rpm').split(',') }}"
+#- name: Descargar varios archivos RPM
+#  ansible.builtin.get_url:
+#    url: "{{ item }}"
+#    dest: "/tmp/{{ item | basename }}"
+#  loop:
+ #   - https://downloads.slack-edge.com/releases/linux/4.35.126/prod/x64/slack-4.35.126-0.1.el8.x86_64.rpm
+  #  - https://otro-sitio-web.com/otro-archivo.rpm

@@ -2,9 +2,9 @@
   gather_facts: False
   connection: local
   become: yes
-  tasks:  #Pacman 
+  tasks:  # DNF
     - name: comprobar actualización discord
-      pacman:
+      ansible.builtin.dnf5:
         pkg:
           - discord
         state: latest
